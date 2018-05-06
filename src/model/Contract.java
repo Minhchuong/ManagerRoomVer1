@@ -25,6 +25,10 @@ public class Contract {
         this.customer = customer;
     }
 
+    public Contract() {
+
+    }
+
     public int getId() {
         return id;
     }
@@ -88,4 +92,6 @@ public class Contract {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+
+
 }

@@ -1,10 +1,12 @@
 package dao;
 
 import controller.Connector;
+import controller.Controller;
 import model.Customer;
 import model.Room;
 
 import java.sql.*;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -31,7 +33,8 @@ public class Dao_Room {
 
     }
 
-    public void addRoom(boolean status, int price) throws SQLException, ClassNotFoundException {
+    public boolean addRoom(boolean status, int price) throws SQLException, ClassNotFoundException {
+        if(price<=0)return false;
         Connection conn = Connector.getConnection();
         Statement statement = conn.createStatement();
         String sql = "INSERT INTO Room VALUE (?,?,?)";
@@ -43,10 +46,11 @@ public class Dao_Room {
 
         int rowCount = preparedStatement.executeUpdate();
         conn.close();
-
+        return rowCount==1;
     }
 
     public boolean updateRoom(int id, boolean status, int price) throws SQLException, ClassNotFoundException{
+        if(price<=0)return false;
         Connection conn = Connector.getConnection();
         Statement statement = conn.createStatement();
         String sql = "UPDATE Room SET STATUS = ?, PRICE = ? WHERE ID = ?";
@@ -93,6 +97,14 @@ public class Dao_Room {
 
 
     public static void main(String[] str) throws SQLException, ClassNotFoundException {
-        Dao_Room dr = new Dao_Room();
+//        Customer customer = new Customer();
+//        customer.setId(2);
+    //    Dao_Contract dao_contract = new Dao_Contract();
+    //    dao_contract.addContrac(new java.sql.Date(2017,12,1),new java.sql.Date(2017,12,3),new Room(1,true,10000),150000,200000,"not description",customer);
+
+        Dao_Contract dao_contract = new Dao_Contract();
+        System.out.println(dao_contract.getListConstract());
+//        Dao_Account daoAccount = new Dao_Account();
+//        System.out.println(daoAccount.checkPassWordByNameAccount("minhchuong", Controller.md5("1")));
     }
 }

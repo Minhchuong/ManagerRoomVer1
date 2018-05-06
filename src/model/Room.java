@@ -11,6 +11,9 @@ public class Room {
         this.price = price;
     }
 
+    public Room() {
+    }
+
     public int getId() {
         return id;
     }

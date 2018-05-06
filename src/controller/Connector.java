@@ -28,6 +28,7 @@ public class Connector {
     }
 
     public static void main(String[] str) throws SQLException, ClassNotFoundException {
-        System.out.println(Connector.getConnection());
+        System.out.println(Integer.parseInt("012"));
+        System.out.println(Controller.md5("1"));
     }
 }
