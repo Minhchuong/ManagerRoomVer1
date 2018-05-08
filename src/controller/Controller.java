@@ -21,6 +21,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Controller implements ActionListener{
@@ -30,7 +31,7 @@ public class Controller implements ActionListener{
     Gui_Info currentGui_Infor;
     Account account;
     Gui_Constract gui_constract;
-
+    static int total,soDien,soNuoc,soThang = 0;
 
     public Controller() throws SQLException, ClassNotFoundException {
         init();
@@ -50,17 +51,21 @@ public class Controller implements ActionListener{
             gui_signIn.getBtnSignIn().addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    try {
+
                         String name = gui_signIn.getTxtAccount().getText().replace(" ","");
                         String pass = gui_signIn.getTxtPassWord().getText().replace(" ", "");
 
-                        if(name == null|| pass == null) JOptionPane.showMessageDialog(gui_signIn,"chua nhap username password");
+                        if(name == null|| pass == null)
+                        { JOptionPane.showMessageDialog(gui_signIn,"chua nhap username password"); return;}
 
+                        else {
+                        try {
                         signIn(name, pass);
                         if(account instanceof Account) {
                             gui_signIn.setVisible(false);
                             gui_main.setVisible(true);
                         }
+
                     } catch (SQLException e1) {
                         JOptionPane.showMessageDialog(gui_signIn,"nhap lai thong tin username va password");
                         e1.printStackTrace();
@@ -68,10 +73,11 @@ public class Controller implements ActionListener{
                         JOptionPane.showMessageDialog(gui_signIn,"nhap lai thong tin username va password");
                         e1.printStackTrace();
                     }
+                    }
                 }
             });
 
-        }
+       }
 
 
 
@@ -86,7 +92,7 @@ public class Controller implements ActionListener{
         ArrayList<Gui_Button> tmp = new ArrayList <>();
 
         for (Room room : rooms ) {
-            tmp.add(new Gui_Button(room.getId()));
+            tmp.add(new Gui_Button(room.getId(),room.isStatus()));
         }
         gui_main.setListButton(tmp);
         gui_main.updateButton();
@@ -110,7 +116,7 @@ public class Controller implements ActionListener{
             case "DELETE": deleteRoom();break;
             case "ADDCONTRACT":createContract();break;
             case "UPDATE": updateRoom();break;
-            case  "LISTCONSTRACT": getListConstract();break;
+            case "LISTCONTRACT": getListConstract();break;
             default: getRoom(e.getActionCommand()); break;
         }
     }
@@ -241,7 +247,12 @@ public class Controller implements ActionListener{
                 currentGui_Infor.getTxtJob().setText(customer.getJob());
                 currentGui_Infor.getTxtPhone().setText("0"+customer.getNumberPhone());
 
-
+                currentGui_Infor.getBtnGetBill().addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        getBill(currentGui_Infor.getId());
+                    }
+                });
             }
 
         } catch (SQLException e) {
@@ -249,6 +260,41 @@ public class Controller implements ActionListener{
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+    public void getBill(int index){
+        total = soDien =soThang=soNuoc = 0;
+        Gui_Bill gui_bill = new Gui_Bill(index);
+
+        Dao_Contract dao_contract = new Dao_Contract();
+        try {
+            Contract contract = dao_contract.getContractByIDRoom(index);
+
+            gui_bill.getBtnPayment().addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        if(!(gui_bill.getDatePickerDatePaid().getModel().getValue() instanceof Date))
+                            JOptionPane.showMessageDialog(gui_bill,"Hãy nhập vào ngày tháng ");
+                        total = soDien = soNuoc = soThang = 0;
+                        soThang = Integer.parseInt(gui_bill.getTxtCouterMonth().getText());
+                        soDien = Integer.parseInt(gui_bill.getTxtNumberEle1().getText());
+                        soNuoc = Integer.parseInt(gui_bill.getTxtNumberEle2h().getText());
+                        total = soDien * 3500 + soNuoc * 2000 + soThang * contract.getRoom().getPrice();
+                        gui_bill.getTxtTotal().setText(total + "");
+
+                    }catch (NumberFormatException e1){
+                        JOptionPane.showMessageDialog(gui_bill,"Nhập vào dữ liệu không phải số dữ liệu không hợp lệ ");
+                    }
+
+                }
+            });
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void exportToWord(String nameAdmin, Date dateAdmin, int identityAdmin, String addressAdmin, String nameCustomer, java.util.Date dateCustomer, int identityCustomer, String addressCustomer, int idroom, java.util.Date dateRent, java.util.Date dateOff, int priceOfRoom, int prepay, int id){
@@ -297,7 +343,7 @@ public class Controller implements ActionListener{
 
             paragraph1Graph.setAlignment(ParagraphAlignment.CENTER);
 
-            String paragraph1 = "HOP DONG THUE PHONG";
+            String paragraph1 = "Hợp Đồng Thuê Phòng ";
 
             XWPFRun paragraph1Run = paragraph1Graph.createRun();
 
@@ -516,7 +562,11 @@ public class Controller implements ActionListener{
 
     public void signIn(String name, String pass) throws SQLException, ClassNotFoundException {
         Dao_Account daoAccount = new Dao_Account();
-        account = daoAccount.checkPassWordByNameAccount(name,md5(pass));
+
+            account = daoAccount.checkPassWordByNameAccount(name, md5(pass));
+        if (!(account instanceof Account)){
+            JOptionPane.showMessageDialog(gui_main,"Sai mật khẩu hoặc tên tài khoản");
+        }
     }
 
     public static String md5(String str){
