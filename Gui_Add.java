@@ -12,12 +12,12 @@ public class Gui_Add extends JFrame {
     private JButton btnAdd,btnCancel;
 
     public Gui_Add() throws HeadlessException {
-        setTitle("Them Phong");
+        setTitle("Thêm phòng: ");
         setLayout(new BorderLayout());
 
         // title
         JPanel panelTop = new JPanel(new FlowLayout());
-        lblTitle = new JLabel("Them Phong");
+        lblTitle = new JLabel("Thêm phòng: ");
         panelTop.add(lblTitle);
         add(panelTop,BorderLayout.NORTH);
 
@@ -25,14 +25,14 @@ public class Gui_Add extends JFrame {
 
         // trang thai
         JPanel panelCenter = new JPanel(new GridLayout(0,2));
-        lblStatus = new JLabel("Trang thai:");
+        lblStatus = new JLabel("Trạng thái: ");
         panelCenter.add(lblStatus);
 
         cbStatus = new JCheckBox();
         cbStatus.isSelected();
         panelCenter.add(cbStatus);
 
-        lblPrice = new JLabel("Gia:");
+        lblPrice = new JLabel("giá: ");
         txtPrice = new JTextField(10);
         panelCenter.add(lblPrice);
         panelCenter.add(txtPrice);
@@ -40,8 +40,8 @@ public class Gui_Add extends JFrame {
 
 
         JPanel panelBot = new JPanel(new FlowLayout());
-        btnAdd = new JButton("Them");
-        btnCancel = new JButton("Huy");
+        btnAdd = new JButton("thêm ");
+        btnCancel = new JButton("huỷ ");
         panelBot.add(btnAdd);
         panelBot.add(btnCancel);
         add(panelBot, BorderLayout.SOUTH);

@@ -18,12 +18,12 @@ public class Gui_Main extends JFrame {
 
     public void init(){
         setLayout(new BorderLayout());
-        setTitle("Quan ly phong tro");
+        setTitle("Quản lý phòng trọ ");
 
 
         // top panel
         panelTop = new JPanel(new FlowLayout());
-        lblTop = new JLabel("Quan ly phong tro");
+        lblTop = new JLabel("Quản lý phòng trọ ");
         panelTop.add(lblTop);
         add(panelTop, BorderLayout.NORTH);
 
@@ -34,12 +34,12 @@ public class Gui_Main extends JFrame {
 
         // bottom panel
         panelBottom = new JPanel(new FlowLayout());
-        btnAdd = new JButton("ADD");
+        btnAdd = new JButton("thêm vào ");
         btnAdd.setActionCommand("ADD");
         panelBottom.add(btnAdd);
 
-        btnConstract = new JButton("Constract");
-        btnConstract.setActionCommand("LISTCONSTRACT");
+        btnConstract = new JButton("hợp đồng ");
+        btnConstract.setActionCommand("LISTCONTRACT");
         panelBottom.add(btnConstract);
 
         add(panelBottom, BorderLayout.SOUTH);
@@ -137,9 +137,6 @@ public class Gui_Main extends JFrame {
     public static void main(String str[]){
         Gui_Main gm = new Gui_Main();
         ArrayList<Gui_Button> listbutton = new ArrayList <Gui_Button>();
-        listbutton.add(new Gui_Button(1));
-        listbutton.add(new Gui_Button(1));
-        listbutton.add(new Gui_Button(1));
 
         gm.setListButton(listbutton);
         gm.updateButton();

@@ -10,7 +10,7 @@ public class Gui_Constract extends JFrame {
     public Gui_Constract(Object[][] object) throws HeadlessException {
         //JTable
         setLayout(new BorderLayout());
-        String[] titles = new String[]{"STT", "Chu phong tro","Ngay thue", "Ngay tra","tra truoc","Da thanh toan", "ten khach hang","ma phong"};
+        String[] titles = new String[]{"STT", "Chủ phòng trọ ","Ngày thuê ", "Ngày trả ","trả trươc ","đã thanh toán", "tên khách hàng","mã phòng "};
         this.objects = object;
 
         JTable table = new JTable(objects, titles);
@@ -19,11 +19,11 @@ public class Gui_Constract extends JFrame {
 
         //panel bot
         JPanel pnbottom = new JPanel(new FlowLayout());
-        JLabel lblXoa = new JLabel("Nhap ma hop dong muon xoa: ");
+        JLabel lblXoa = new JLabel("Nhập mã hợp đồng muốn xoá: ");
         pnbottom.add(lblXoa);
         txtTextField = new JTextField(10);
         pnbottom.add(txtTextField);
-        btnXoa = new JButton("Xoa");
+        btnXoa = new JButton("Xoá ");
         pnbottom.add(btnXoa);
         add(pnbottom, BorderLayout.SOUTH);
 

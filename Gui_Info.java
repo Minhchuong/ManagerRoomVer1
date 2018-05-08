@@ -17,13 +17,13 @@ public class Gui_Info extends JFrame{
     public Gui_Info(int id, boolean status) throws HeadlessException {
         this.id = id;
         this.status = status;
-        setTitle("Thong tin phong");
+        setTitle("Thông tin phòng: ");
         setLayout(new BorderLayout());
 
 
         // panel top
         JPanel paneltop = new JPanel(new FlowLayout());
-        JLabel lblTitle = new JLabel("Thong tin phong" + id +": ");
+        JLabel lblTitle = new JLabel("Thông tin phòng : " + id +": ");
         paneltop.add(lblTitle);
         add(paneltop,BorderLayout.NORTH);
         
@@ -41,19 +41,19 @@ public class Gui_Info extends JFrame{
         panelRoom.add(txtID);
 
         //status
-        lblStatus = new JLabel("Status:");
+        lblStatus = new JLabel("trạng thái: ");
         panelRoom.add(lblStatus);
         cbStatus = new JCheckBox();
         cbStatus.setEnabled(false);
         panelRoom.add(cbStatus);
 
         //price
-        lblPrice = new JLabel("Price:");
+        lblPrice = new JLabel("giá :");
         panelRoom.add(lblPrice);
         txtPrice = new JTextField(10);
         panelRoom.add(txtPrice);
 
-        panelRoom.setBorder(BorderFactory.createTitledBorder("Phong thue"));
+        panelRoom.setBorder(BorderFactory.createTitledBorder("Phòng thuê: "));
         panelCenter.add(panelRoom);
         add(panelCenter,BorderLayout.CENTER);
         
@@ -61,19 +61,19 @@ public class Gui_Info extends JFrame{
         JPanel panelBottom = new JPanel(new FlowLayout());
         
         //delete
-        btnDelete = new JButton("Xoa");
+        btnDelete = new JButton("xoá: ");
         btnDelete.setActionCommand("DELETE");
         panelBottom.add(btnDelete);
 
         //Update
-        btnUpdate = new JButton("Sua");
+        btnUpdate = new JButton("Sửa: ");
         btnUpdate.setActionCommand("UPDATE");
         panelBottom.add(btnUpdate);
 
         //Constract
 
         if(!status) {
-            btnContract = new JButton("Them Hop Dong");
+            btnContract = new JButton("Thêm hợp đồng ");
             btnContract.setActionCommand("ADDCONTRACT");
             panelBottom.add(btnContract);
 
@@ -88,7 +88,7 @@ public class Gui_Info extends JFrame{
             JLabel lblName,lblBirthDay,lblIdentify,lblAddress, lblJob, lblPhone;
 
             JPanel pnName = new JPanel();
-            lblName = new JLabel("Name");
+            lblName = new JLabel("họ và tên ");
             lblName.setPreferredSize(new Dimension(80,20));
             pnName.add(lblName);
             txtName = new JTextField(15);
@@ -97,7 +97,7 @@ public class Gui_Info extends JFrame{
             pnCustomer.add(pnName);
 
             JPanel pnBirthDay = new JPanel();
-            lblBirthDay = new JLabel("BirthDay");
+            lblBirthDay = new JLabel("ngày sinh ");
             lblBirthDay.setPreferredSize(new Dimension(80,20));
             pnBirthDay.add(lblBirthDay);
             txtBirthDay = new JTextField(15);
@@ -106,7 +106,7 @@ public class Gui_Info extends JFrame{
             pnCustomer.add(pnBirthDay);
 
             JPanel pnIdentify = new JPanel();
-            lblIdentify = new JLabel("Identify");
+            lblIdentify = new JLabel("cmnd ");
             lblIdentify.setPreferredSize(new Dimension(80,20));
             pnIdentify.add(lblIdentify);
             txtIdentify = new JTextField(15);
@@ -115,7 +115,7 @@ public class Gui_Info extends JFrame{
             pnCustomer.add(pnIdentify);
 
             JPanel pnAddress = new JPanel();
-            lblAddress = new JLabel("Address");
+            lblAddress = new JLabel("địa chỉ ");
             lblAddress.setPreferredSize(new Dimension(80,20));
             pnAddress.add(lblAddress);
             txtAddress = new JTextField(15);
@@ -124,7 +124,7 @@ public class Gui_Info extends JFrame{
             pnCustomer.add(pnAddress);
 
             JPanel pnJob = new JPanel();
-            lblJob = new JLabel("Job");
+            lblJob = new JLabel("công việc ");
             lblJob.setPreferredSize(new Dimension(80,20));
             pnJob.add(lblJob);
             txtJob = new JTextField(15);
@@ -133,7 +133,7 @@ public class Gui_Info extends JFrame{
             pnCustomer.add(pnJob);
 
             JPanel pnPhone = new JPanel();
-            lblPhone = new JLabel("Phone");
+            lblPhone = new JLabel("số đt ");
             lblPhone.setPreferredSize(new Dimension(80,20));
             pnPhone.add(lblPhone);
             txtPhone = new JTextField(15);
@@ -141,7 +141,7 @@ public class Gui_Info extends JFrame{
             pnPhone.add(txtPhone);
             pnCustomer.add(pnPhone);
 
-            pnCustomer.setBorder(BorderFactory.createTitledBorder("Khach thue: "));
+            pnCustomer.setBorder(BorderFactory.createTitledBorder("khách thuê : "));
             add(pnCustomer, BorderLayout.EAST);
 
             //Contract
@@ -151,7 +151,7 @@ public class Gui_Info extends JFrame{
             JLabel lblDateRent, lblDateOff,lblPrepay,lblPortpaid,lblDescription;
 
             JPanel pnDateRent = new JPanel();
-            lblDateRent = new JLabel("DateRent");
+            lblDateRent = new JLabel("ngày thuê ");
             lblDateRent.setPreferredSize(new Dimension(80,20));
             pnDateRent.add(lblDateRent);
             txtDateRent = new JTextField(15);
@@ -160,7 +160,7 @@ public class Gui_Info extends JFrame{
             pnContract.add(pnDateRent);
 
             JPanel pnDateOff = new JPanel();
-            lblDateOff = new JLabel("DateOff");
+            lblDateOff = new JLabel("ngày trả ");
             lblDateOff.setPreferredSize(new Dimension(80,20));
             pnDateOff.add(lblDateOff);
             txtDateOff = new JTextField(15);
@@ -170,7 +170,7 @@ public class Gui_Info extends JFrame{
 
 
             JPanel pnPrepay = new JPanel();
-            lblPrepay = new JLabel("Prepay");
+            lblPrepay = new JLabel("trả trước ");
             lblPrepay.setPreferredSize(new Dimension(80,20));
             pnPrepay.add(lblPrepay);
             txtPrepay = new JTextField(15);
@@ -179,7 +179,7 @@ public class Gui_Info extends JFrame{
             pnContract.add(pnPrepay);
 
             JPanel pnPortpaid = new JPanel();
-            lblPortpaid = new JLabel("Portpaid");
+            lblPortpaid = new JLabel("trả tiền ");
             lblPortpaid.setPreferredSize(new Dimension(80,20));
             pnPortpaid.add(lblPortpaid);
             txtPortpaid = new JTextField(15);
@@ -188,7 +188,7 @@ public class Gui_Info extends JFrame{
             pnContract.add(pnPortpaid);
 
             JPanel pnDescription = new JPanel();
-            lblDescription = new JLabel("Description");
+            lblDescription = new JLabel("mô tả ");
             lblDescription.setPreferredSize(new Dimension(80,20));
             pnDescription.add(lblDescription);
             txtDescription = new JTextField(15);
@@ -196,10 +196,10 @@ public class Gui_Info extends JFrame{
             pnDescription.add(txtDescription);
             pnContract.add(pnDescription);
 
-            pnContract.setBorder(BorderFactory.createTitledBorder("Khach thue: "));
+            pnContract.setBorder(BorderFactory.createTitledBorder("Khách thuê: "));
             panelCenter.add(pnContract);
 
-            btnGetBill = new JButton("Xuat hoa don");
+            btnGetBill = new JButton("Xuất hoá đơn: ");
             panelBottom.add(btnGetBill);
         }
 

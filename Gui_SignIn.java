@@ -9,22 +9,22 @@ public class Gui_SignIn extends JFrame {
     JButton btnSignIn;
     public Gui_SignIn() throws HeadlessException {
         setLayout(new BorderLayout());
-        setTitle("Quan ly phong tro");
+        setTitle("Quản lý phòng trọ ");
 
         // top panel
         JPanel panelTop = new JPanel(new FlowLayout());
-        JLabel lblTop = new JLabel("Dang nhap");
+        JLabel lblTop = new JLabel("đăng nhập ");
         panelTop.add(lblTop);
         add(panelTop, BorderLayout.NORTH);
         
         // center panel
         JPanel panelCenter = new JPanel(new GridLayout(0,2));
-        JLabel lblAccount = new JLabel("Tai Khoan: ");
+        JLabel lblAccount = new JLabel("Tài khoản: ");
         panelCenter.add(lblAccount);
         txtAccount = new JTextField(10);
         panelCenter.add(txtAccount);
 
-        JLabel lblPassWord = new JLabel("mat khau: ");
+        JLabel lblPassWord = new JLabel("mật khẩu: ");
         panelCenter.add(lblPassWord);
         txtPassWord = new JPasswordField(10);
         panelCenter.add(txtPassWord);
@@ -33,7 +33,7 @@ public class Gui_SignIn extends JFrame {
 
         // bottom panel;
         JPanel panelBottom = new JPanel(new FlowLayout());
-        btnSignIn = new JButton("Dang nhap");
+        btnSignIn = new JButton("đăng nhập ");
         panelBottom.add(btnSignIn);
         add(panelBottom,BorderLayout.SOUTH);
 
